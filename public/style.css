@@ -1,0 +1,974 @@
+/* Professional Modern CSS Design */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Professional Color Palette */
+  --primary-color: #2563eb;
+  --primary-dark: #1d4ed8;
+  --secondary-color: #64748b;
+  --accent-color: #0ea5e9;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --error-color: #ef4444;
+  --premium-color: #f59e0b;
+  
+  /* Neutral Colors */
+  --white: #ffffff;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+  min-height: 100vh;
+  color: var(--gray-800);
+  line-height: 1.6;
+  padding: 1rem;
+}
+
+/* Container Styles */
+.container {
+  max-width: 900px;
+  margin: 1rem auto;
+  background: var(--white);
+  padding: 2rem;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gray-200);
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-container {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--gray-900);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: 1.875rem;
+  margin-bottom: 0.5rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: var(--gray-600);
+  margin-bottom: 1rem;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--gray-800);
+  background: var(--white);
+  transition: all 0.2s ease;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 0.1);
+}
+
+input::placeholder {
+  color: var(--gray-400);
+  font-weight: 400;
+}
+
+/* Button Styles */
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Primary Button */
+button:not(.premium-btn):not(.edit-btn):not(.delete-btn):not(#logoutBtn) {
+  background: var(--primary-color);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+button:not(.premium-btn):not(.edit-btn):not(.delete-btn):not(#logoutBtn):hover {
+  background: var(--primary-dark);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+button:not(.premium-btn):not(.edit-btn):not(.delete-btn):not(#logoutBtn):active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Premium Button */
+.premium-btn {
+  background: linear-gradient(135deg, var(--premium-color), #ea580c) !important;
+  color: var(--white) !important;
+  padding: 0.875rem 1.5rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.premium-btn:hover {
+  background: linear-gradient(135deg, #ea580c, var(--premium-color)) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-lg) !important;
+}
+
+.premium-btn:disabled {
+  background: var(--gray-400) !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Links */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* Error Messages */
+.error {
+  color: var(--error-color);
+  background: rgb(239 68 68 / 0.1);
+  border: 1px solid rgb(239 68 68 / 0.2);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+/* Success Messages */
+.success {
+  color: var(--success-color);
+  background: rgb(16 185 129 / 0.1);
+  border: 1px solid rgb(16 185 129 / 0.2);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+/* Top Bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: var(--white);
+  max-width: 900px;
+  margin: 2rem auto 0;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
+  border-bottom: none;
+}
+
+.top-bar h2 {
+  margin: 0;
+  color: var(--gray-900);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+#logoutBtn {
+  background: var(--error-color);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+#logoutBtn:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Premium Banner */
+#premium-banner {
+  background: linear-gradient(135deg, var(--premium-color), #ea580c);
+  color: var(--white);
+  font-weight: 700;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  margin: 0 auto 1rem;
+  max-width: 900px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  animation: premiumPulse 3s infinite;
+}
+
+@keyframes premiumPulse {
+  0%, 100% { 
+    box-shadow: var(--shadow-md);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: var(--shadow-lg);
+    transform: scale(1.02);
+  }
+}
+
+/* Membership Section */
+#membership-section {
+  text-align: center;
+  margin: 0 auto 1rem;
+  max-width: 900px;
+  padding: 1rem;
+}
+
+/* Premium Features Section */
+#premium-features {
+  max-width: 900px;
+  margin: 0 auto 2rem;
+}
+
+#premium-features > div {
+  background: rgb(245 158 11 / 0.05);
+  border: 2px solid rgb(245 158 11 / 0.2);
+  padding: 1.5rem;
+  border-radius: var(--radius-xl);
+}
+
+#premium-features h3 {
+  color: var(--premium-color);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+#premium-features .report-btn,
+#premium-features button {
+  margin: 0.25rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* Table Styles */
+#expenseTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+}
+
+#expenseTable th {
+  background: var(--gray-900);
+  color: var(--white);
+  padding: 1rem 0.75rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+#expenseTable td {
+  padding: 1rem 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid var(--gray-200);
+  color: var(--gray-700);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+#expenseTable tbody tr {
+  transition: all 0.2s ease;
+}
+
+#expenseTable tbody tr:hover {
+  background: var(--gray-50);
+}
+
+#expenseTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#expenseTable td button {
+  margin: 0 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.75rem;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+#expenseTable .edit-btn {
+  background: var(--warning-color);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+#expenseTable .edit-btn:hover {
+  background: #d97706;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+#expenseTable .delete-btn {
+  background: var(--error-color);
+  color: var(--white);
+  box-shadow: var(--shadow-sm);
+}
+
+#expenseTable .delete-btn:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Pagination Styles */
+#pagination-container {
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-200);
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#pagination-info {
+  color: var(--gray-600);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+#pagination-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#pagination-buttons button {
+  padding: 0.5rem 1rem !important;
+  border: 1px solid var(--gray-300) !important;
+  background: var(--white) !important;
+  color: var(--gray-700) !important;
+  border-radius: var(--radius-md) !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+#pagination-buttons button:hover:not(:disabled) {
+  background: var(--primary-color) !important;
+  color: var(--white) !important;
+  border-color: var(--primary-color) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+#pagination-buttons button:disabled {
+  background: var(--gray-100) !important;
+  color: var(--gray-400) !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Loading Animation */
+.loading {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--gray-300);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* No Expenses State */
+#no-expenses {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--gray-500);
+}
+
+#no-expenses h3 {
+  color: var(--gray-600);
+  margin-bottom: 0.5rem;
+}
+
+/* Loading State */
+#expenses-loading {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--gray-500);
+}
+
+/* Payment Message */
+#payment-message {
+  max-width: 900px;
+  margin: 0 auto 1rem;
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Success Message Toast */
+.success-toast {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: var(--success-color);
+  color: var(--white);
+  padding: 1rem 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  z-index: 1000;
+  font-weight: 600;
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  .container, .top-bar {
+    margin: 0.5rem auto;
+    padding: 1.5rem;
+    max-width: 95%;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+  }
+  
+  input, select, button {
+    padding: 12px 15px;
+  }
+  
+  #expenseTable {
+    font-size: 0.85rem;
+  }
+  
+  #expenseTable th, #expenseTable td {
+    padding: 12px 8px;
+  }
+  
+  #expenseTable td button {
+    padding: 8px 12px;
+    margin: 0 4px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .container, .top-bar, #premium-banner, #membership-section, #payment-message {
+    max-width: 100%;
+  }
+  
+  #expenseTable th, #expenseTable td {
+    padding: 10px 5px;
+    font-size: 0.8rem;
+  }
+  
+  #expenseTable td button {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Loading Animation */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Success/Error States */
+.success {
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white;
+}
+
+.error-state {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+}
+
+/* Pagination Styles */
+#pagination-container {
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  padding: 20px;
+}
+
+#pagination-info {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+#pagination-buttons {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#pagination-buttons button {
+  padding: 8px 12px !important;
+  margin: 0 2px !important;
+  border: 1px solid #ddd !important;
+  background: white !important;
+  color: #495057 !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  font-size: 0.9rem !important;
+  transition: all 0.2s ease !important;
+  min-width: 40px;
+}
+
+#pagination-buttons button:hover:not(:disabled) {
+  background: #e9ecef !important;
+  border-color: #adb5bd !important;
+}
+
+#pagination-buttons button:disabled {
+  background: #f8f9fa !important;
+  color: #6c757d !important;
+  cursor: not-allowed !important;
+}
+
+#pagination-buttons button.active {
+  background: #667eea !important;
+  color: white !important;
+  border-color: #667eea !important;
+}
+
+/* Filter Controls */
+.filter-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  align-items: end;
+  padding: 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.filter-controls label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+
+.filter-controls input,
+.filter-controls select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.filter-controls input:focus,
+.filter-controls select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+/* Loading State */
+#expenses-loading {
+  text-align: center;
+  padding: 40px;
+  color: #7f8c8d;
+}
+
+#expenses-loading .loading {
+  margin: 0 auto 15px;
+}
+
+/* Responsive Pagination */
+@media (max-width: 768px) {
+  #pagination-container {
+    padding: 15px;
+  }
+  
+  #pagination-buttons {
+    justify-content: center;
+  }
+  
+  #pagination-buttons button {
+    padding: 6px 10px !important;
+    font-size: 0.8rem !important;
+    min-width: 35px;
+  }
+  
+  .filter-controls {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  #pagination-buttons button {
+    padding: 5px 8px !important;
+    font-size: 0.75rem !important;
+    min-width: 30px;
+  }
+  
+  /* Hide some pagination buttons on very small screens */
+  #pagination-buttons button:nth-child(n+8):nth-last-child(n+3) {
+    display: none;
+  }
+}
+
+/* Leaderboard Modal */
+#leaderboard-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+#leaderboard-modal > div {
+  background: var(--white);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+#close-leaderboard {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  transition: background 0.2s ease;
+}
+
+#close-leaderboard:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#leaderboard-content {
+  padding: 1.5rem;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* Form Grid Layout for larger screens */
+@media (min-width: 768px) {
+  #expenseForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: end;
+  }
+  
+  #expenseForm button {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 200px;
+  }
+  
+  #expenseForm > div:nth-child(3) { /* Category dropdown */
+    grid-column: 1 / -1;
+  }
+  
+  #expenseForm > div:nth-child(4) { /* Split with input */
+    grid-column: 1 / -1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 0.5rem;
+  }
+  
+  .container, .top-bar {
+    margin: 0.5rem auto;
+    padding: 1.5rem;
+    max-width: 95%;
+  }
+  
+  .top-bar {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  #expenseTable {
+    font-size: 0.8rem;
+  }
+  
+  #expenseTable th, #expenseTable td {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  #expenseTable td button {
+    padding: 0.5rem 0.75rem;
+    margin: 0 0.25rem;
+    font-size: 0.7rem;
+  }
+  
+  #pagination-container {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  #pagination-buttons {
+    justify-content: center;
+  }
+  
+  #premium-features > div {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .top-bar {
+    padding: 1rem;
+  }
+  
+  #expenseTable th, #expenseTable td {
+    padding: 0.5rem 0.25rem;
+    font-size: 0.75rem;
+  }
+  
+  #expenseTable td button {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.65rem;
+  }
+  
+  #pagination-buttons button {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .premium-btn {
+    padding: 0.75rem 1rem !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .top-bar,
+  #premium-features,
+  #membership-section,
+  #pagination-container,
+  button {
+    display: none !important;
+  }
+  
+  .container {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  #expenseTable {
+    box-shadow: none;
+  }
+}
+/* Pagination Button Class */
+.pagination-btn {
+  padding: 0.5rem 1rem !important;
+  border: 1px solid var(--gray-300) !important;
+  background: var(--primary-color) !important;
+  color: var(--white) !important;
+  border-radius: var(--radius-md) !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+  box-shadow: var(--shadow-sm) !important;
+  margin: 0 0.25rem !important;
+}
+
+.pagination-btn:hover {
+  background: var(--primary-dark) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-md) !important;
+}

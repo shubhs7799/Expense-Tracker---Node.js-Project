@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container auth-container">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <div style="font-size: 3rem; margin-bottom: 0.5rem;">🚀</div>
+      <h2>Join Us Today!</h2>
+      <p style="color: #7f8c8d; margin-bottom: 2rem;">Create your account to start tracking expenses</p>
+    </div>
+    
+    <form id="signupForm">
+      <div style="position: relative;">
+        <input type="text" id="firstName" placeholder="   First Name" required style="padding-left: 45px;" />
+        <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #95a5a6;">👤</span>
+      </div>
+      
+      <div style="position: relative;">
+        <input type="text" id="lastName" placeholder="   Last Name" required style="padding-left: 45px;" />
+        <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #95a5a6;">👤</span>
+      </div>
+      
+      <div style="position: relative;">
+        <input type="email" id="email" placeholder="   Email Address" required style="padding-left: 45px;" />
+        <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #95a5a6;">📧</span>
+      </div>
+      
+      <div style="position: relative;">
+        <input type="password" id="password" placeholder="   Password (min 7 characters)" required style="padding-left: 45px;" />
+        <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #95a5a6;">🔒</span>
+      </div>
+      
+      <button type="submit">
+        <span>Create Account</span>
+      </button>
+      
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <p style="color: #7f8c8d;">Already have an account? 
+          <a href="login.html" style="font-weight: 600;">Sign in here</a>
+        </p>
+      </div>
+    </form>
+    
+    <div class="error" id="signupError" style="display: none;"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
