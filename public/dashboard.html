@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - Expense Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+  </head>
+  <body>
+    <!-- Premium Status Banner -->
+    <div
+      id="premium-banner"
+      style="display: none;"
+    >
+      👑 You are a Premium User! Enjoy unlimited features and priority support.
+    </div>
+
+    <!-- Buy Premium Section -->
+    <div id="membership-section">
+      <button id="buy-membership" class="premium-btn" style="display: none;">
+        🚀 Upgrade to Premium - ₹499/year
+      </button>
+    </div>
+
+    <div class="top-bar">
+      <div>
+        <h2 style="margin: 0; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 1.5rem;">📊</span>
+          Expense Dashboard
+        </h2>
+      </div>
+      <button id="logoutBtn">
+        <span style="margin-right: 5px;">🚪</span>
+        Logout
+      </button>
+    </div>
+
+    <!-- Premium Features Section -->
+    <div id="premium-features" style="display: none; max-width: 900px; margin: 0 auto 2rem;">
+      <div style="background: linear-gradient(135deg, rgba(241, 196, 15, 0.1), rgba(243, 156, 18, 0.1)); padding: 20px; border-radius: 15px; border: 2px solid rgba(241, 196, 15, 0.3);">
+        <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; color: #f39c12;">
+          <span style="font-size: 1.2rem;">👑</span>
+          Premium Features
+        </h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 20px;">
+          <!-- Reports Section -->
+          <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            <h4 style="margin-bottom: 10px; color: #2c3e50; display: flex; align-items: center; gap: 8px;">
+              <span>📈</span> Expense Reports
+            </h4>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <button class="report-btn" data-type="daily" style="background: linear-gradient(135deg, #3498db, #2980b9); color: white; padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">
+                📅 Daily Report
+              </button>
+              <button class="report-btn" data-type="weekly" style="background: linear-gradient(135deg, #9b59b6, #8e44ad); color: white; padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">
+                📊 Weekly Report
+              </button>
+              <button class="report-btn" data-type="monthly" style="background: linear-gradient(135deg, #e67e22, #d35400); color: white; padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">
+                📋 Monthly Report
+              </button>
+            </div>
+          </div>
+
+          <!-- Leaderboard Section -->
+          <div style="background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            <h4 style="margin-bottom: 10px; color: #2c3e50; display: flex; align-items: center; gap: 8px;">
+              <span>🏆</span> Leaderboard
+            </h4>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <button id="view-leaderboard" style="background: linear-gradient(135deg, #27ae60, #229954); color: white; padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">
+                🏅 View Rankings
+              </button>
+              <button id="my-rank" style="background: linear-gradient(135deg, #f39c12, #e67e22); color: white; padding: 8px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">
+                📍 My Rank
+              </button>
+            </div>
+            <div id="user-rank-info" style="margin-top: 10px; font-size: 0.85rem; color: #7f8c8d;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Add Expense Form -->
+      <div style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1)); padding: 20px; border-radius: 15px; margin-bottom: 2rem;">
+        <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 1.2rem;">➕</span>
+          Add New Expense
+        </h3>
+        
+        <form id="expenseForm">
+          <div style="position: relative;">
+            <input type="number" id="amount" placeholder="   Amount (₹)" required style="padding-left: 45px;" step="0.01" />
+            <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #95a5a6;">💰</span>
+          </div>
+          
+          <div style="position: relative;">
+            <input type="text" id="description" placeholder="   Description" required style="padding-left: 45px;" />
+            <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #95a5a6;">📝</span>
+          </div>
+          
+          <div style="position: relative;">
+            <select id="category" required style="padding-left: 45px;">
+              <option value="">   Select Category</option>
+              <option value="fashion">👗 Fashion</option>
+              <option value="food">🍕 Food & Beverage</option>
+              <option value="fuel">⛽ Fuel</option>
+              <option value="entertainment">🎬 Entertainment</option>
+              <option value="healthcare">🏥 Healthcare</option>
+              <option value="education">📚 Education</option>
+              <option value="other">📦 Other</option>
+            </select>
+            <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #95a5a6;">🏷️</span>
+          </div>
+          
+          <!-- <div style="position: relative;">
+            <input type="text" id="splitWith" placeholder="   Split with (comma-separated user IDs)" style="padding-left: 45px;" />
+            <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #95a5a6;">👥</span>
+          </div> -->
+          
+          <button type="submit" style="background: linear-gradient(135deg, #27ae60, #2ecc71); margin-top: 10px;">
+            <span style="margin-right: 8px;">💾</span>
+            <span id="form-btn-text">Add Expense</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Expenses Table -->
+      <div style="background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);">
+        <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3 style="margin: 0; display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 1.2rem;">📋</span>
+              Your Expenses
+            </h3>
+            
+            <!-- Items Per Page Selector -->
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <label style="color: white; font-size: 0.9rem;">Show:</label>
+              <select id="items-per-page" style="padding: 5px 8px; border: none; border-radius: 4px; background: white; color: #2c3e50;">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+              </select>
+              <span style="color: white; font-size: 0.9rem;">per page</span>
+            </div>
+          </div>
+        </div>
+        
+        <div style="overflow-x: auto;">
+          <table id="expenseTable">
+            <thead>
+              <tr>
+                <th>💰 Amount</th>
+                <th>📝 Description</th>
+                <th>🏷️ Category</th>
+                <th>📅 Date</th>
+                <th>⚙️ Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Expenses will be loaded here -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div id="pagination-container" style="padding: 20px; background: #f8f9fa; border-top: 1px solid #e9ecef;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+            <!-- Pagination Info -->
+            <div id="pagination-info" style="color: #7f8c8d; font-size: 0.9rem;">
+              <!-- Pagination info will be displayed here -->
+            </div>
+            
+            <!-- Pagination Buttons -->
+            <div id="pagination-buttons" style="display: flex; gap: 10px;">
+              <!-- Simple Previous/Next buttons will be generated here -->
+            </div>
+          </div>
+        </div>
+        
+        <div id="no-expenses" style="display: none; text-align: center; padding: 40px; color: #7f8c8d;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+          <h3>No expenses yet!</h3>
+          <p>Start by adding your first expense above.</p>
+        </div>
+
+        <!-- Loading State -->
+        <div id="expenses-loading" style="display: none; text-align: center; padding: 40px; color: #7f8c8d;">
+          <div class="loading" style="margin: 0 auto 15px;"></div>
+          <p>Loading expenses...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Status Messages -->
+    <div id="payment-message" style="display: none;"></div>
+
+    <!-- Leaderboard Modal -->
+    <div id="leaderboard-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; overflow-y: auto;">
+      <div style="background: white; margin: 50px auto; max-width: 800px; border-radius: 15px; position: relative;">
+        <div style="background: linear-gradient(135deg, #f39c12, #e67e22); color: white; padding: 20px; border-radius: 15px 15px 0 0;">
+          <h3 style="margin: 0; display: flex; align-items: center; gap: 10px;">
+            <span>🏆</span> Expense Leaderboard
+          </h3>
+          <button id="close-leaderboard" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: white; font-size: 24px; cursor: pointer;">×</button>
+        </div>
+        <div id="leaderboard-content" style="padding: 20px; max-height: 500px; overflow-y: auto;">
+          <!-- Leaderboard content will be loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

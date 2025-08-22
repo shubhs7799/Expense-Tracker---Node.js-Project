@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container auth-container">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <div style="font-size: 3rem; margin-bottom: 0.5rem;">💰</div>
+      <h2>Welcome Back!</h2>
+      <p style="color: #7f8c8d; margin-bottom: 2rem;">Sign in to manage your expenses</p>
+    </div>
+    
+    <form id="loginForm">
+      <div style="position: relative;">
+        <input type="email" id="loginEmail" placeholder="   Email Address" required style="padding-left: 45px;" />
+        <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #95a5a6;">📧</span>
+      </div>
+      
+      <div style="position: relative;">
+        <input type="password" id="loginPassword" placeholder="   Password" required style="padding-left: 45px;" />
+        <span style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #95a5a6;">🔒</span>
+      </div>
+      
+      <button type="submit">
+        <span>Sign In</span>
+      </button>
+      
+      <div style="text-align: center; margin-top: 1rem;">
+        <a href="forgot-password.html" style="color: #e74c3c; font-size: 0.9rem; text-decoration: none;">
+          🔑 Forgot your password?
+        </a>
+      </div>
+      
+      <div style="text-align: center; margin-top: 1.5rem;">
+        <p style="color: #7f8c8d;">Don't have an account? 
+          <a href="signup.html" style="font-weight: 600;">Create one here</a>
+        </p>
+      </div>
+    </form>
+    
+    <div class="error" id="loginError" style="display: none;"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
